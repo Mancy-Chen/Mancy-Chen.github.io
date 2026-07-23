@@ -5,6 +5,48 @@ const themeToggle = document.querySelector(".theme-toggle");
 
 const languageSwitch = document.querySelector(".lang-switch");
 
+// Add absolute canonical and language-alternate URLs for search engines.
+function upsertLink({ rel, href, hreflang }) {
+  const selector = hreflang
+    ? `link[rel="${rel}"][hreflang="${hreflang}"]`
+    : `link[rel="${rel}"]:not([hreflang])`;
+  let element = document.head.querySelector(selector);
+  if (!element) {
+    element = document.createElement("link");
+    element.rel = rel;
+    if (hreflang) element.hreflang = hreflang;
+    document.head.appendChild(element);
+  }
+  element.href = href;
+}
+
+function upsertMeta(property, content) {
+  let element = document.head.querySelector(`meta[property="${property}"]`);
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute("property", property);
+    document.head.appendChild(element);
+  }
+  element.content = content;
+}
+
+function updateSeoMetadata() {
+  const siteRoot = "https://mingshichen.com/";
+  const isChinesePage = document.documentElement.lang.toLowerCase().startsWith("zh");
+  const canonicalUrl = isChinesePage ? `${siteRoot}zh.html` : siteRoot;
+
+  upsertLink({ rel: "canonical", href: canonicalUrl });
+  upsertLink({ rel: "alternate", hreflang: "en", href: siteRoot });
+  upsertLink({ rel: "alternate", hreflang: "zh-CN", href: `${siteRoot}zh.html` });
+  upsertLink({ rel: "alternate", hreflang: "x-default", href: siteRoot });
+
+  upsertMeta("og:url", canonicalUrl);
+  upsertMeta("og:locale", isChinesePage ? "zh_CN" : "en_US");
+  upsertMeta("og:locale:alternate", isChinesePage ? "en_US" : "zh_CN");
+}
+
+updateSeoMetadata();
+
 function updateLanguageSwitchHref() {
   if (!languageSwitch) return;
   const target = languageSwitch.dataset.languageTarget || languageSwitch.getAttribute("href");
@@ -73,4 +115,3 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-
