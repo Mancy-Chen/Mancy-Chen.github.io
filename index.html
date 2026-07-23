@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="Mingshi Chen — medical imaging and artificial intelligence researcher working across neuroimaging, brain health, and clinically grounded machine learning." name="description"/>
+<meta content="#f7f5ef" name="theme-color"/>
+<title>Mingshi Chen | Medical Imaging &amp; AI</title>
+<meta content="Mingshi Chen | Medical Imaging &amp; AI" property="og:title"/>
+<meta content="Medical imaging and AI researcher working at the intersection of neuroimaging, clinical science, and machine learning." property="og:description"/>
+<meta content="website" property="og:type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="index.html" hreflang="en" rel="alternate"/><link href="zh.html" hreflang="zh-CN" rel="alternate"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script>
+    // Apply saved theme before rendering to avoid a flash.
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="container nav-wrap">
+<a aria-label="Mingshi Chen, home" class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark">MC</span>
+<span>Mingshi Chen</span>
+</a>
+<button aria-controls="main-nav" aria-expanded="false" class="nav-toggle">
+<span class="sr-only">Open navigation</span>
+<span></span><span></span>
+</button>
+<nav aria-label="Main navigation" class="main-nav" id="main-nav">
+<a href="#about">About</a>
+<a href="#research">Research</a>
+<a href="#work">Selected work</a>
+<a href="#experience">Experience</a>
+<a href="#contact">Contact</a>
+<button aria-label="Switch color theme" class="theme-toggle" type="button">
+<span aria-hidden="true" class="theme-icon">◐</span>
+</button>
+<a aria-label="Switch to Chinese" class="lang-switch" data-language-target="zh.html" href="zh.html" hreflang="zh-CN" lang="zh-CN">中文</a></nav>
+</div>
+</header>
+<main id="main">
+<section class="hero" id="top">
+<div aria-hidden="true" class="hero-orbit hero-orbit-one"></div>
+<div aria-hidden="true" class="hero-orbit hero-orbit-two"></div>
+<div class="container hero-grid">
+<div class="hero-copy reveal">
+<p class="eyebrow">Medical imaging · Neuroimaging · Artificial intelligence</p>
+<h1>Turning complex brain data into <em>clinically meaningful</em> insight.</h1>
+<p class="hero-lead">I am Mingshi Chen (陈明诗), a PhD researcher at Amsterdam UMC. My work combines medical imaging, machine learning, and clinical knowledge to study brain health and build methods that remain useful beyond the model itself.</p>
+<div class="hero-actions">
+<a class="button button-primary" href="#research">Explore my research</a>
+<a class="button button-secondary" href="#contact">Get in touch</a>
+</div>
+<ul aria-label="Current profile" class="hero-meta">
+<li>Amsterdam, the Netherlands</li>
+<li>PhD researcher</li>
+<li>Open to postdoctoral and medical-AI opportunities</li>
+</ul>
+</div>
+<div aria-label="Abstract visualization of brain imaging and connected data" class="hero-visual reveal">
+<svg aria-labelledby="brain-title brain-desc" role="img" viewbox="0 0 620 620">
+<title id="brain-title">Abstract brain and data network</title>
+<desc id="brain-desc">Organic brain contours surrounded by connected data points.</desc>
+<defs>
+<lineargradient id="brainGradient" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="currentColor" stop-opacity=".95"></stop>
+<stop offset="100%" stop-color="currentColor" stop-opacity=".42"></stop>
+</lineargradient>
+<filter id="softGlow">
+<fegaussianblur result="blur" stddeviation="7"></fegaussianblur>
+<femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge>
+</filter>
+</defs>
+<circle class="visual-halo" cx="310" cy="310" r="250"></circle>
+<circle class="visual-ring" cx="310" cy="310" r="205"></circle>
+<circle class="visual-ring visual-ring-dash" cx="310" cy="310" r="264"></circle>
+<g class="network-lines">
+<path d="M102 190 L188 143 L249 210 L341 145 L440 205 L515 153"></path>
+<path d="M86 362 L166 315 L244 381 L340 318 L431 387 L529 337"></path>
+<path d="M153 487 L222 433 L307 479 L399 427 L478 484"></path>
+<path d="M188 143 L166 315 M249 210 L244 381 M341 145 L340 318 M440 205 L431 387"></path>
+</g>
+<g class="network-nodes" filter="url(#softGlow)">
+<circle cx="102" cy="190" r="7"></circle><circle cx="188" cy="143" r="5"></circle>
+<circle cx="249" cy="210" r="8"></circle><circle cx="341" cy="145" r="6"></circle>
+<circle cx="440" cy="205" r="8"></circle><circle cx="515" cy="153" r="5"></circle>
+<circle cx="86" cy="362" r="5"></circle><circle cx="166" cy="315" r="8"></circle>
+<circle cx="244" cy="381" r="5"></circle><circle cx="340" cy="318" r="8"></circle>
+<circle cx="431" cy="387" r="6"></circle><circle cx="529" cy="337" r="7"></circle>
+<circle cx="153" cy="487" r="6"></circle><circle cx="222" cy="433" r="5"></circle>
+<circle cx="307" cy="479" r="8"></circle><circle cx="399" cy="427" r="5"></circle>
+<circle cx="478" cy="484" r="7"></circle>
+</g>
+<g class="brain-shape" fill="none" stroke="url(#brainGradient)" stroke-linecap="round" stroke-linejoin="round">
+<path d="M302 188c-35-45-102-34-119 14-32 8-47 43-31 70-25 24-15 66 17 79-8 38 25 69 60 59 16 33 57 38 82 14"></path>
+<path d="M310 188c35-45 102-34 119 14 32 8 47 43 31 70 25 24 15 66-17 79 8 38-25 69-60 59-16 33-57 38-73 14"></path>
+<path d="M306 195v222"></path>
+<path d="M225 215c28 3 45 22 47 48M199 278c31-9 59 5 67 29M190 353c27-18 58-15 78 8M239 409c-4-28 8-50 34-63"></path>
+<path d="M387 215c-28 3-45 22-47 48M413 278c-31-9-59 5-67 29M422 353c-27-18-58-15-78 8M373 409c4-28-8-50-34-63"></path>
+</g>
+</svg>
+<div class="visual-label label-one"><span>01</span><strong>Clinical context</strong></div><div class="visual-label label-two"><span>02</span><strong>Quantitative imaging</strong></div><div class="visual-label label-three"><span>03</span><strong>Responsible AI</strong></div></div>
+</div>
+</section>
+<section class="section about-section" id="about">
+<div class="container two-column">
+<div class="section-heading reveal">
+<p class="eyebrow">About</p>
+<h2>A clinical perspective on computational research.</h2>
+<div class="about-photo-card reveal"><div class="about-photo-frame"><img alt="Portrait of Mingshi Chen" src="mingshi-chen-photo.jpg"/></div><div class="about-photo-caption"><p class="about-photo-name">Mingshi Chen</p><p class="about-photo-subname">陈明诗</p><p class="about-photo-role">PhD Researcher · Amsterdam UMC</p></div></div></div>
+<div class="about-copy reveal">
+<p class="large-copy">
+            My background spans clinical medicine, medical imaging, and data science.
+            That combination shapes the questions I ask: not only whether a model
+            performs well, but whether its output is interpretable, reproducible, and
+            meaningful for patients and researchers.
+          </p>
+<p>
+            At Amsterdam UMC, I work with structural MRI, diffusion MRI, functional MRI,
+            radiomics, brain-age modelling, and longitudinal statistics. I enjoy building
+            complete research pipelines—from imaging quality control and feature
+            engineering to validation, visualization, and scientific communication.
+          </p>
+<div class="principles">
+<article>
+<span>01</span>
+<h3>Clinically grounded</h3>
+<p>Research questions begin with biological and clinical relevance.</p>
+</article>
+<article>
+<span>02</span>
+<h3>Methodologically careful</h3>
+<p>Validation, sensitivity analysis, and clear limitations are part of the result.</p>
+</article>
+<article>
+<span>03</span>
+<h3>Built to communicate</h3>
+<p>Complex analyses should become understandable evidence, not a black box.</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="section research-section" id="research">
+<div class="container">
+<div class="section-heading section-heading-wide reveal">
+<div>
+<p class="eyebrow">Research themes</p>
+<h2>Questions I am working on.</h2>
+</div>
+<p>
+            My projects connect quantitative neuroimaging with cognition, psychiatric
+            treatment, substance exposure, and individual differences.
+          </p>
+</div>
+<div class="card-grid">
+<article class="research-card reveal">
+<div class="card-index">01</div>
+<div aria-hidden="true" class="card-icon">
+<svg viewbox="0 0 48 48"><path d="M8 31c7-1 9-15 16-15s9 14 16 13"></path><circle cx="8" cy="31" r="3"></circle><circle cx="24" cy="16" r="3"></circle><circle cx="40" cy="29" r="3"></circle></svg>
+</div>
+<h3>Brain age &amp; individual differences</h3>
+<p>
+              Evaluating multiple grey- and white-matter brain-age models and asking
+              how language experience relates to apparent brain ageing.
+            </p>
+<ul class="tag-list">
+<li>T1 MRI</li><li>DTI</li><li>Bias correction</li><li>Normative modelling</li>
+</ul>
+</article>
+<article class="research-card reveal">
+<div class="card-index">02</div>
+<div aria-hidden="true" class="card-icon">
+<svg viewbox="0 0 48 48"><path d="M11 12v24M24 7v34M37 15v18"></path><path d="M6 29h10M19 19h10M32 25h10"></path></svg>
+</div>
+<h3>Longitudinal neuroimaging</h3>
+<p>
+              Studying structural brain changes before and after incident XTC exposure,
+              including regional volumes, whole-brain patterns, dose, and memory.
+            </p>
+<ul class="tag-list">
+<li>Longitudinal MRI</li><li>PCA</li><li>Mixed models</li><li>RAVLT</li>
+</ul>
+</article>
+<article class="research-card reveal">
+<div class="card-index">03</div>
+<div aria-hidden="true" class="card-icon">
+<svg viewbox="0 0 48 48"><path d="M9 35l9-10 7 5 14-18"></path><path d="M31 12h8v8"></path></svg>
+</div>
+<h3>Prediction in psychiatry</h3>
+<p>
+              Testing whether early clinical and task-fMRI signals can improve treatment
+              outcome prediction in major depressive disorder.
+            </p>
+<ul class="tag-list">
+<li>fMRI</li><li>Radiomics</li><li>Machine learning</li><li>Depression</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+<section class="section work-section" id="work">
+<div class="container">
+<div class="section-heading reveal">
+<p class="eyebrow">Selected work</p>
+<h2>Research across methods and clinical questions.</h2>
+</div>
+<div class="work-list">
+<article class="work-item reveal">
+<div class="work-year">2026</div>
+<div>
+<p class="work-type">Peer-reviewed publication · Scientific Reports</p>
+<h3>On the value of radiomics in addition to clinical measures in emotional conflict fMRI for predicting sertraline response in major depressive disorder</h3>
+<p>
+                A preregistered EMBARC analysis comparing clinical, regional mean-activation,
+                radiomic, and whole-brain task-fMRI features for prediction of sertraline and placebo outcomes.
+              </p>
+</div>
+<a class="text-link" href="https://doi.org/10.1038/s41598-026-56688-y" rel="noopener noreferrer" target="_blank">
+              View DOI <span aria-hidden="true">↗</span>
+</a>
+</article>
+<article class="work-item reveal">
+<div class="work-year">2025</div>
+<div>
+<p class="work-type">Peer-reviewed publication · NeuroImage: Clinical</p>
+<h3>Prediction of methylphenidate treatment response for ADHD using conventional and radiomics T1 and DTI features</h3>
+<p>
+                A secondary analysis of a randomized clinical trial evaluating conventional MRI measures
+                and radiomics with nested cross-validation in stimulant-naive children and adults with ADHD.
+              </p>
+</div>
+<a class="text-link" href="https://doi.org/10.1016/j.nicl.2024.103707" rel="noopener noreferrer" target="_blank">
+              View DOI <span aria-hidden="true">↗</span>
+</a>
+</article>
+<article class="work-item reveal">
+<div class="work-year">2025</div>
+<div>
+<p class="work-type">Book chapter · Academic Press</p>
+<h3>What Is beyond the Image? Machine Learning for MR Image Analysis</h3>
+<p>
+                An overview of radiomics, machine learning, representation learning, and their application
+                to extracting clinically useful information from magnetic resonance imaging.
+              </p>
+</div>
+<a class="text-link" href="https://doi.org/10.1016/B978-0-443-14109-6.00014-6" rel="noopener noreferrer" target="_blank">
+              View DOI <span aria-hidden="true">↗</span>
+</a>
+</article>
+<article class="work-item reveal">
+<div class="work-year">2024</div>
+<div>
+<p class="work-type">Peer-reviewed publication · Cancer Imaging</p>
+<h3>Intracranial metabolic score in primary central nervous system lymphoma using PET/CT and PET/MR</h3>
+<p>
+                Contributed to multimodal metabolic imaging research in primary central nervous system lymphoma.
+              </p>
+</div>
+<a class="text-link" href="https://doi.org/10.1186/s40644-024-00798-1" rel="noopener noreferrer" target="_blank">
+              View DOI <span aria-hidden="true">↗</span>
+</a>
+</article>
+<article class="work-item reveal">
+<div class="work-year">2024</div>
+<div>
+<p class="work-type">Peer-reviewed publication · Cancers</p>
+<h3>Pontine-white matter score in primary central nervous system lymphoma</h3>
+<p>
+                Contributed to MRI-based characterization of primary central nervous system lymphoma.
+              </p>
+</div>
+<a class="text-link" href="https://doi.org/10.3390/cancers16152708" rel="noopener noreferrer" target="_blank">
+              View DOI <span aria-hidden="true">↗</span>
+</a>
+</article>
+<article class="work-item reveal">
+<div class="work-year">2023</div>
+<div>
+<p class="work-type">Peer-reviewed publication · Radiotherapy &amp; Oncology</p>
+<h3>Endonasopharyngeal ultrasound and MRI of recurrent retropharyngeal lymph nodes</h3>
+<p>
+                Contributed to work comparing complementary imaging approaches in recurrent retropharyngeal disease.
+              </p>
+</div>
+<a class="text-link" href="https://doi.org/10.1016/j.radonc.2023.109579" rel="noopener noreferrer" target="_blank">
+              View DOI <span aria-hidden="true">↗</span>
+</a>
+</article>
+<article class="work-item reveal">
+<div class="work-year">Current</div>
+<div>
+<p class="work-type">Manuscript</p>
+<h3>Association of bilingual language use with brain age: MRI evidence from bilinguals, translators, and interpreters</h3>
+<p>
+                Examines structural MRI-derived brain age across bilingual phenotypes with different levels
+                of professional language experience and language-control demand.
+              </p>
+</div>
+<span class="status-pill">Under review</span>
+</article>
+<article class="work-item reveal">
+<div class="work-year">Current</div>
+<div>
+<p class="work-type">PhD research</p>
+<h3>Dose-dependent longitudinal whole-brain structural change associated with XTC exposure</h3>
+<p>
+                A prospective NeXT-cohort study combining behavioral replication, predefined hippocampal and
+                thalamic analyses, baseline-derived PCA, mixed-effects modelling, and cumulative XTC dose.
+              </p>
+</div>
+<span class="status-pill">In preparation</span>
+</article>
+<article class="work-item reveal">
+<div class="work-year">Current</div>
+<div>
+<p class="work-type">Collaborative manuscript</p>
+<h3>MRI radiomics to predict return-to-sport after hamstring injury</h3>
+<p>
+                A collaborative application of quantitative MRI and predictive modelling to sports-injury outcome.
+              </p>
+</div>
+<span class="status-pill">Submitting</span>
+</article>
+</div>
+<p class="edit-note reveal">
+          For the complete and most current publication record, see Google Scholar or download my CV.
+        </p>
+</div>
+</section>
+<section class="section experience-section" id="experience">
+<div class="container two-column">
+<div class="section-heading reveal">
+<p class="eyebrow">Experience &amp; toolkit</p>
+<h2>From images to evidence.</h2>
+</div>
+<div class="experience-content reveal">
+<div class="timeline">
+<article>
+<div class="timeline-dot"></div>
+<p class="timeline-date">2022 — present</p>
+<h3>PhD Researcher · Amsterdam UMC</h3>
+<p>
+                Neuroimaging, medical AI, psychiatric imaging, longitudinal modelling,
+                scientific writing, and student supervision.
+              </p>
+</article>
+<article>
+<div class="timeline-dot"></div>
+<p class="timeline-date">2014 — 2022</p>
+<h3>Clinical medicine &amp; imaging and nuclear medicine</h3>
+<p>
+                BMed training in clinical medicine followed by an MClinMed in imaging and
+                nuclear medicine at Sun Yat-sen University and SYSU Cancer Center.
+              </p>
+</article>
+</div>
+<div class="toolkit">
+<h3>Selected methods and tools</h3>
+<div class="tool-groups">
+<div>
+<p>Imaging</p>
+<span>Structural MRI</span><span>DTI</span><span>fMRI</span>
+<span>FreeSurfer</span><span>FastSurfer</span><span>FSL</span>
+</div>
+<div>
+<p>Data science</p>
+<span>Python</span><span>PyTorch</span><span>MONAI</span>
+<span>scikit-learn</span><span>statsmodels</span><span>R</span>
+</div>
+<div>
+<p>Analysis</p>
+<span>Radiomics</span><span>Brain age</span><span>Mixed models</span>
+<span>Cross-validation</span><span>Visualization</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section contact-section" id="contact">
+<div class="container contact-panel reveal">
+<div>
+<p class="eyebrow">Contact</p>
+<h2>Let’s connect research, imaging, and clinical impact.</h2>
+<p>
+            I am interested in postdoctoral research and medical-AI roles involving
+            neuroimaging, model validation, clinical translation, or multimodal data.
+          </p>
+</div>
+<div class="contact-actions">
+<a class="button button-primary" href="mailto:mancy_chen@163.com">Email me</a>
+<a class="button button-secondary" href="https://www.linkedin.com/in/mingshi-chen/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="button button-secondary" href="https://scholar.google.com/citations?hl=en&amp;user=pt1ozw4AAAAJ" rel="noopener noreferrer" target="_blank">Google Scholar</a>
+<a class="button button-secondary" href="https://orcid.org/0000-0003-1224-8399" rel="noopener noreferrer" target="_blank">ORCID</a>
+<a class="button button-secondary" href="https://github.com/Mancy-Chen" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="button button-secondary" href="Mingshi_Chen_CV.pdf" target="_blank">Download CV</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container footer-inner">
+<p>© <span id="year"></span> Mingshi Chen · 陈明诗</p>
+<p><a href="https://orcid.org/0000-0003-1224-8399" rel="noopener noreferrer" target="_blank">ORCID 0000-0003-1224-8399</a></p>
+<a href="#top">Back to top ↑</a>
+</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
