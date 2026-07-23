@@ -201,9 +201,9 @@
       }
     }
 
-    if (!document.querySelector("#headline-v13-fixes")) {
+    if (!document.querySelector("#headline-v14-fixes")) {
       const style = document.createElement("style");
-      style.id = "headline-v13-fixes";
+      style.id = "headline-v14-fixes";
       style.textContent = `
         html[lang="zh-CN"] .hero h1 .hero-highlight-zh {
           color: var(--accent);
@@ -224,6 +224,14 @@
 
         .mobile-title-break {
           display: none;
+        }
+
+        @media (min-width: 981px) {
+          html[lang="nl"] .hero h1 {
+            max-width: 650px;
+            font-size: clamp(49px, 4.1vw, 64px);
+            line-height: 1.01;
+          }
         }
 
         @media (max-width: 760px) {
