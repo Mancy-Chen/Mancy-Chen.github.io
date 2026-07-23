@@ -80,7 +80,7 @@
         if (navLinks[index]) navLinks[index].textContent = label;
       });
 
-      setText(".hero .eyebrow", "Medische beeldvorming · Neuroimaging · Kunstmatige intelligentie");
+      setText(".hero .eyebrow", "Medische beeldvorming · Neuroimaging · AI");
       setHtml(".hero h1", 'Complexe hersendata omzetten in <em class="hero-highlight-en">klinisch betekenisvolle</em> inzichten.');
       setText(".hero-lead", "Ik ben Mingshi Chen (陈明诗), promovendus bij Amsterdam UMC. Mijn onderzoek combineert medische beeldvorming, machine learning en klinische kennis om hersengezondheid te bestuderen en methoden te ontwikkelen die ook buiten het model zelf bruikbaar blijven.");
       setText(".hero-actions .button-primary", "Bekijk mijn onderzoek");
@@ -161,6 +161,8 @@
       setText('#contact a[href="Mingshi_Chen_CV.pdf"]', "Download cv");
       setText(".site-footer a[href='#top']", "Terug naar boven ↑");
     } else {
+      setText(".hero .eyebrow", "Medical imaging · Neuroimaging · AI");
+
       const heroHighlight = document.querySelector(".hero h1 em");
       if (heroHighlight) {
         heroHighlight.classList.add("hero-highlight-en");
@@ -199,9 +201,9 @@
       }
     }
 
-    if (!document.querySelector("#headline-v11-fixes")) {
+    if (!document.querySelector("#headline-v12-fixes")) {
       const style = document.createElement("style");
-      style.id = "headline-v11-fixes";
+      style.id = "headline-v12-fixes";
       style.textContent = `
         html[lang="zh-CN"] .hero h1 .hero-highlight-zh {
           color: var(--accent);
@@ -227,6 +229,12 @@
         @media (max-width: 760px) {
           .mobile-title-break {
             display: block;
+          }
+
+          .hero .eyebrow {
+            white-space: nowrap;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
           }
 
           .main-nav {
