@@ -20,19 +20,18 @@
 
     function addDutchLanguageButton() {
       const nav = document.querySelector(".main-nav");
-      if (!nav || nav.querySelector('.lang-switch-nl')) return;
-
-      const dutchLink = document.createElement("a");
-      dutchLink.className = "lang-switch lang-switch-nl";
-      dutchLink.href = `index.html?lang=nl${window.location.hash}`;
-      dutchLink.hreflang = "nl";
-      dutchLink.lang = "nl";
-      dutchLink.setAttribute("aria-label", "Switch to Dutch");
-      dutchLink.textContent = "NL";
-      nav.appendChild(dutchLink);
+      if (!nav) return;
 
       if (isDutchPage) {
-        dutchLink.setAttribute("aria-current", "page");
+        const existingLanguageLink = nav.querySelector(".lang-switch");
+        if (existingLanguageLink) {
+          existingLanguageLink.href = `zh.html${window.location.hash}`;
+          existingLanguageLink.dataset.languageTarget = "zh.html";
+          existingLanguageLink.hreflang = "zh-CN";
+          existingLanguageLink.lang = "zh-CN";
+          existingLanguageLink.setAttribute("aria-label", "Overschakelen naar Chinees");
+          existingLanguageLink.textContent = "中文";
+        }
 
         const englishLink = document.createElement("a");
         englishLink.className = "lang-switch lang-switch-en";
@@ -42,17 +41,21 @@
         englishLink.setAttribute("aria-label", "Switch to English");
         englishLink.textContent = "EN";
 
-        const existingLanguageLink = nav.querySelector(".lang-switch:not(.lang-switch-nl)");
-        if (existingLanguageLink) {
-          existingLanguageLink.href = `zh.html${window.location.hash}`;
-          existingLanguageLink.dataset.languageTarget = "zh.html";
-          existingLanguageLink.hreflang = "zh-CN";
-          existingLanguageLink.lang = "zh-CN";
-          existingLanguageLink.setAttribute("aria-label", "Overschakelen naar Chinees");
-          existingLanguageLink.textContent = "中文";
-          nav.insertBefore(englishLink, existingLanguageLink);
-        }
+        if (existingLanguageLink) nav.insertBefore(englishLink, existingLanguageLink);
+        else nav.appendChild(englishLink);
+        return;
       }
+
+      if (nav.querySelector(".lang-switch-nl")) return;
+
+      const dutchLink = document.createElement("a");
+      dutchLink.className = "lang-switch lang-switch-nl";
+      dutchLink.href = `index.html?lang=nl${window.location.hash}`;
+      dutchLink.hreflang = "nl";
+      dutchLink.lang = "nl";
+      dutchLink.setAttribute("aria-label", "Switch to Dutch");
+      dutchLink.textContent = "NL";
+      nav.appendChild(dutchLink);
     }
 
     addDutchLanguageButton();
@@ -196,9 +199,9 @@
       }
     }
 
-    if (!document.querySelector("#headline-v10-fixes")) {
+    if (!document.querySelector("#headline-v11-fixes")) {
       const style = document.createElement("style");
-      style.id = "headline-v10-fixes";
+      style.id = "headline-v11-fixes";
       style.textContent = `
         html[lang="zh-CN"] .hero h1 .hero-highlight-zh {
           color: var(--accent);
@@ -239,6 +242,17 @@
 
           .main-nav > a:not(.lang-switch) {
             width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+          }
+
+          .main-nav > a:not(.lang-switch)::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.15em;
+            line-height: 1;
+            flex: 0 0 auto;
           }
         }
       `;
