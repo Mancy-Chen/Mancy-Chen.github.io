@@ -7,12 +7,13 @@ const languageSwitch = document.querySelector(".lang-switch");
 const isChinesePage = document.documentElement.lang.toLowerCase().startsWith("zh");
 const siteRoot = "https://mingshichen.com/";
 
-document.documentElement.classList.add("site-v6");
+document.documentElement.classList.add("site-v7");
 
 function upsertLink({ rel, href, hreflang }) {
   const selector = hreflang
     ? `link[rel="${rel}"][hreflang="${hreflang}"]`
     : `link[rel="${rel}"]:not([hreflang])`;
+
   let element = document.head.querySelector(selector);
   if (!element) {
     element = document.createElement("link");
@@ -275,6 +276,7 @@ function injectLatestResponsiveStyles() {
       .hero-photo-role { font-size: 12px; }
       .hero h1 { font-size: clamp(40px, 12vw, 58px); line-height: .98; }
       html[lang="zh-CN"] .hero h1 { line-height: 1.12; }
+      html[lang="en"] .hero h1 em { margin-inline: .09em; }
       .hero-lead { font-size: 17px; }
 
       .hero-actions {
@@ -358,8 +360,8 @@ function applyLatestLayout() {
   const heroTitle = document.querySelector(".hero h1");
   if (heroTitle) {
     heroTitle.innerHTML = isChinesePage
-      ? `将复杂的大脑<span class="desktop-title-break"></span>数据转化为具有<span class="desktop-title-break"></span><em>临床意义的</em>见解。`
-      : `Turning complex<span class="desktop-title-break"></span>brain data into<span class="desktop-title-break"></span><em>clinically meaningful</em><span class="desktop-title-break"></span>insight.`;
+      ? `将复杂的大脑<span class="desktop-title-break"></span>数据转化为具有<span class="desktop-title-break"></span><em>临床意义</em>的见解。`
+      : `Turning complex<span class="desktop-title-break"></span>brain data into <span class="desktop-title-break"></span><em>clinically meaningful</em> <span class="desktop-title-break"></span>insight.`;
   }
 
   const heroVisual = document.querySelector(".hero-visual");
@@ -375,7 +377,7 @@ function applyLatestLayout() {
       <div class="hero-photo-accent hero-photo-accent-two" aria-hidden="true"></div>
       <figure class="hero-photo-card">
         <div class="hero-photo-frame">
-          <img src="mingshi-chen-photo.jpg?v=6" alt="${isChinesePage ? "陈明诗个人照片" : "Portrait of Mingshi Chen"}">
+          <img src="mingshi-chen-photo.jpg?v=7" alt="${isChinesePage ? "陈明诗个人照片" : "Portrait of Mingshi Chen"}">
         </div>
         <figcaption class="hero-photo-caption">
           <p class="hero-photo-name">${isChinesePage ? "陈明诗" : "Mingshi Chen"}</p>
@@ -389,6 +391,23 @@ function applyLatestLayout() {
   document
     .querySelectorAll("#about .about-photo-card, #about .about-brain-card")
     .forEach((element) => element.remove());
+}
+
+function refineChineseSectionHeadings() {
+  if (!isChinesePage) return;
+
+  const replacements = {
+    "#about .section-heading h2": "以临床视角<br>开展计算研究",
+    "#research .section-heading h2": "正在探索的问题",
+    "#work .section-heading h2": "跨越方法学与<br>临床问题的研究",
+    "#experience .section-heading h2": "从影像<br>走向证据",
+    "#contact h2": "让研究、影像与临床价值相互连接"
+  };
+
+  Object.entries(replacements).forEach(([selector, html]) => {
+    const heading = document.querySelector(selector);
+    if (heading) heading.innerHTML = html;
+  });
 }
 
 function renamePublications() {
@@ -463,7 +482,7 @@ function localizeChineseWorkLabels() {
 
   document.querySelectorAll(".work-type").forEach((element) => {
     const label = element.textContent.trim();
-    if (label === "研究论文" || label === "博士课题") {
+    if (["研究论文", "博士课题", "博士研究论文"].includes(label)) {
       element.textContent = "博士研究项目";
     }
   });
@@ -471,6 +490,7 @@ function localizeChineseWorkLabels() {
 
 updateSeoMetadata();
 applyLatestLayout();
+refineChineseSectionHeadings();
 renamePublications();
 localizeChineseWorkLabels();
 replaceChineseName();
