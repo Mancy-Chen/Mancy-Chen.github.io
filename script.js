@@ -201,9 +201,9 @@
       }
     }
 
-    if (!document.querySelector("#headline-v12-fixes")) {
+    if (!document.querySelector("#headline-v13-fixes")) {
       const style = document.createElement("style");
-      style.id = "headline-v12-fixes";
+      style.id = "headline-v13-fixes";
       style.textContent = `
         html[lang="zh-CN"] .hero h1 .hero-highlight-zh {
           color: var(--accent);
@@ -232,7 +232,9 @@
           }
 
           .hero .eyebrow {
+            width: 100%;
             white-space: nowrap;
+            text-align: center;
             font-size: 0.7rem;
             letter-spacing: 0.08em;
           }
