@@ -275,27 +275,33 @@ function renamePublications() {
   const exactTitles = [
     {
       doi: "10.1038/s41598-026-56688-y",
-      title: "On the value of radiomics in addition to clinical measures in emotional conflict fMRI for predicting sertraline response in major depressive disorder"
+      en: "On the value of radiomics in addition to clinical measures in emotional conflict fMRI for predicting sertraline response in major depressive disorder",
+      zh: "情绪冲突 fMRI 中放射组学在临床指标基础上预测重度抑郁障碍舍曲林疗效的增益价值"
     },
     {
       doi: "10.1016/j.nicl.2024.103707",
-      title: "Prediction of methylphenidate treatment response for ADHD using conventional and radiomics T1 and DTI features: Secondary analysis of a randomized clinical trial"
+      en: "Prediction of methylphenidate treatment response for ADHD using conventional and radiomics T1 and DTI features: Secondary analysis of a randomized clinical trial",
+      zh: "基于常规及放射组学 T1 和 DTI 特征预测 ADHD 的哌甲酯治疗反应：随机临床试验的二次分析"
     },
     {
       doi: "10.1016/B978-0-443-14109-6.00014-6",
-      title: "What is beyond the image? Machine learning for MR image analysis"
+      en: "What is beyond the image? Machine learning for MR image analysis",
+      zh: "图像之外是什么？用于磁共振图像分析的机器学习"
     },
     {
       doi: "10.1186/s40644-024-00798-1",
-      title: "Assessing the intracranial metabolic score as a novel prognostic tool in primary CNS lymphoma with end of induction-chemotherapy 18F-FDG PET/CT and PET/MR"
+      en: "Assessing the intracranial metabolic score as a novel prognostic tool in primary CNS lymphoma with end of induction-chemotherapy 18F-FDG PET/CT and PET/MR",
+      zh: "评估颅内代谢评分作为原发性中枢神经系统淋巴瘤诱导化疗结束时 18F-FDG PET/CT 与 PET/MR 的新型预后工具"
     },
     {
       doi: "10.3390/cancers16152708",
-      title: "The Prognostic Significance of Pontine-White Matter Score in Primary Central Nervous System Lymphoma Patients"
+      en: "The Prognostic Significance of Pontine-White Matter Score in Primary Central Nervous System Lymphoma Patients",
+      zh: "脑桥-白质评分在原发性中枢神经系统淋巴瘤患者中的预后意义"
     },
     {
       doi: "10.1016/j.radonc.2023.109579",
-      title: "Endonasopharyngeal ultrasound and magnetic resonance imaging features of recurrent retropharyngeal nodes in nasopharyngeal carcinoma patients: a radiologic-histopathologic study"
+      en: "Endonasopharyngeal ultrasound and magnetic resonance imaging features of recurrent retropharyngeal nodes in nasopharyngeal carcinoma patients: a radiologic-histopathologic study",
+      zh: "鼻咽腔内超声与磁共振成像对鼻咽癌患者复发性咽后淋巴结的影像学特征：一项影像-组织病理学研究"
     }
   ];
 
@@ -309,7 +315,7 @@ function renamePublications() {
 
     const publication = exactTitles.find(({ doi }) => linkText.includes(doi));
     if (publication) {
-      heading.textContent = publication.title;
+      heading.textContent = isChinesePage ? publication.zh : publication.en;
       return;
     }
 
@@ -321,7 +327,9 @@ function renamePublications() {
       currentTitle.includes("bilingual") ||
       currentTitle.includes("双语")
     ) {
-      heading.textContent = "Language processing demands predict biological brain age: MRI evidence from bilinguals, translators, and interpreters";
+      heading.textContent = isChinesePage
+        ? "语言加工需求可预测生物学脑龄：来自双语者、翻译者和口译者的 MRI 证据"
+        : "Language processing demands predict biological brain age: MRI evidence from bilinguals, translators, and interpreters";
     }
   });
 }
