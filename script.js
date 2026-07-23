@@ -11,6 +11,11 @@
       heroTitle.innerHTML = `将复杂的大脑<span class="desktop-title-break"></span>数据转化为具有<span class="desktop-title-break"></span><strong class="hero-highlight-zh">临床意义</strong>的见解`;
     }
 
+    const contactTitle = document.querySelector("#contact h2");
+    if (contactTitle) {
+      contactTitle.innerHTML = `让研究、影像与<br>临床价值相互连接`;
+    }
+
     if (!document.querySelector("#headline-v8-fixes")) {
       const style = document.createElement("style");
       style.id = "headline-v8-fixes";
