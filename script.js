@@ -7,6 +7,8 @@ const languageSwitch = document.querySelector(".lang-switch");
 const isChinesePage = document.documentElement.lang.toLowerCase().startsWith("zh");
 const siteRoot = "https://mingshichen.com/";
 
+document.documentElement.classList.add("site-v4");
+
 function upsertLink({ rel, href, hreflang }) {
   const selector = hreflang
     ? `link[rel="${rel}"][hreflang="${hreflang}"]`
@@ -33,12 +35,10 @@ function upsertMeta(property, content) {
 
 function updateSeoMetadata() {
   const canonicalUrl = isChinesePage ? `${siteRoot}zh.html` : siteRoot;
-
   upsertLink({ rel: "canonical", href: canonicalUrl });
   upsertLink({ rel: "alternate", hreflang: "en", href: siteRoot });
   upsertLink({ rel: "alternate", hreflang: "zh-CN", href: `${siteRoot}zh.html` });
   upsertLink({ rel: "alternate", hreflang: "x-default", href: siteRoot });
-
   upsertMeta("og:url", canonicalUrl);
   upsertMeta("og:locale", isChinesePage ? "zh_CN" : "en_US");
   upsertMeta("og:locale:alternate", isChinesePage ? "en_US" : "zh_CN");
@@ -50,7 +50,6 @@ function updateSeoMetadata() {
     structuredData.id = "person-structured-data";
     document.head.appendChild(structuredData);
   }
-
   structuredData.textContent = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
@@ -59,41 +58,28 @@ function updateSeoMetadata() {
     url: siteRoot,
     image: `${siteRoot}mingshi-chen-photo.jpg`,
     jobTitle: "PhD Researcher",
-    affiliation: {
-      "@type": "Organization",
-      name: "Amsterdam UMC"
-    },
+    affiliation: { "@type": "Organization", name: "Amsterdam UMC" },
     sameAs: [
       "https://www.linkedin.com/in/mingshi-chen/",
       "https://orcid.org/0000-0003-1224-8399",
       "https://scholar.google.com/citations?hl=en&user=pt1ozw4AAAAJ",
       "https://github.com/Mancy-Chen"
     ],
-    knowsAbout: [
-      "Medical imaging",
-      "Neuroimaging",
-      "Artificial intelligence",
-      "Machine learning",
-      "Radiomics",
-      "Brain age"
-    ]
+    knowsAbout: ["Medical imaging", "Neuroimaging", "Artificial intelligence", "Machine learning", "Radiomics", "Brain age"]
   });
 }
 
 function replaceChineseName() {
   if (!isChinesePage) return;
-
   const cleanName = (value) => value
     .replaceAll("Mingshi Chen", "陈明诗")
     .replaceAll("陈明诗（陈明诗）", "陈明诗")
     .replaceAll("陈明诗 · 陈明诗", "陈明诗");
 
   document.title = cleanName(document.title);
-
   document.querySelectorAll("meta[content]").forEach((element) => {
     element.content = cleanName(element.content);
   });
-
   document.querySelectorAll("[aria-label], [alt], [title]").forEach((element) => {
     ["aria-label", "alt", "title"].forEach((attribute) => {
       if (element.hasAttribute(attribute)) {
@@ -101,20 +87,16 @@ function replaceChineseName() {
       }
     });
   });
-
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  const textNodes = [];
-  while (walker.nextNode()) textNodes.push(walker.currentNode);
-  textNodes.forEach((node) => {
-    node.nodeValue = cleanName(node.nodeValue);
-  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach((node) => { node.nodeValue = cleanName(node.nodeValue); });
 }
 
-function injectCleanPortraitStyles() {
-  if (document.querySelector("#clean-portrait-styles")) return;
-
+function injectLatestResponsiveStyles() {
+  if (document.querySelector("#latest-responsive-styles")) return;
   const style = document.createElement("style");
-  style.id = "clean-portrait-styles";
+  style.id = "latest-responsive-styles";
   style.textContent = `
     .hero-photo-visual {
       position: relative;
@@ -123,14 +105,12 @@ function injectCleanPortraitStyles() {
       place-items: center;
       isolation: isolate;
     }
-
     .hero-photo-accent {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
       z-index: -1;
     }
-
     .hero-photo-accent-one {
       width: 330px;
       height: 330px;
@@ -138,7 +118,6 @@ function injectCleanPortraitStyles() {
       top: 8%;
       background: color-mix(in srgb, var(--accent-soft) 68%, transparent);
     }
-
     .hero-photo-accent-two {
       width: 160px;
       height: 160px;
@@ -147,7 +126,6 @@ function injectCleanPortraitStyles() {
       border: 1px solid var(--line);
       background: color-mix(in srgb, var(--surface) 55%, transparent);
     }
-
     .hero-photo-card {
       width: min(100%, 365px);
       margin: 0;
@@ -158,25 +136,19 @@ function injectCleanPortraitStyles() {
       box-shadow: var(--shadow);
       backdrop-filter: blur(14px);
     }
-
     .hero-photo-frame {
       overflow: hidden;
       aspect-ratio: 4 / 5;
       border-radius: 22px;
       background: var(--bg-soft);
     }
-
     .hero-photo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
     }
-
-    .hero-photo-caption {
-      padding: 16px 4px 3px;
-    }
-
+    .hero-photo-caption { padding: 16px 4px 3px; }
     .hero-photo-name {
       margin: 0;
       font-family: var(--serif);
@@ -185,77 +157,118 @@ function injectCleanPortraitStyles() {
       line-height: 1.05;
       letter-spacing: -.035em;
     }
-
     .hero-photo-subname {
       margin: 6px 0 7px;
       color: var(--accent);
       font-size: 14px;
       font-weight: 700;
     }
-
     .hero-photo-role {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
     }
-
     #about .about-photo-card,
-    #about .about-brain-card {
-      display: none !important;
-    }
-
+    #about .about-brain-card { display: none !important; }
     html[lang="zh-CN"] .hero-photo-name,
-    html[lang="zh-CN"] .hero-photo-subname {
-      letter-spacing: 0;
-    }
+    html[lang="zh-CN"] .hero-photo-subname { letter-spacing: 0; }
 
     @media (max-width: 980px) {
-      .hero-photo-visual { min-height: 525px; }
-      .hero-photo-card { width: min(100%, 350px); }
+      .hero-photo-visual { min-height: 510px; }
+      .hero-photo-card { width: min(100%, 340px); }
     }
 
     @media (max-width: 760px) {
+      .container { width: min(100% - 32px, var(--container)); }
+      .hero { padding-top: 112px; }
+      .hero-grid {
+        display: flex !important;
+        flex-direction: column;
+        gap: 34px;
+      }
+      .hero-copy { order: 1; }
       .hero-photo-visual {
+        order: 2;
         min-height: auto;
-        padding: 20px 0 8px;
+        padding: 0 0 10px;
+        width: 100%;
       }
+      .hero-photo-accent { display: none; }
       .hero-photo-card {
-        width: min(100%, 310px);
-        padding: 12px;
-        border-radius: 25px;
+        width: min(100%, 278px);
+        padding: 10px;
+        border-radius: 23px;
+        box-shadow: 0 18px 44px rgba(20, 40, 36, .12);
       }
-      .hero-photo-frame { border-radius: 19px; }
-      .hero-photo-accent-one {
-        width: 250px;
-        height: 250px;
-        right: 5%;
+      .hero-photo-frame { border-radius: 17px; }
+      .hero-photo-caption { padding: 13px 3px 2px; }
+      .hero-photo-name { font-size: 27px; }
+      .hero-photo-subname { margin: 4px 0 5px; font-size: 13px; }
+      .hero-photo-role { font-size: 12px; }
+      .hero h1 { font-size: clamp(40px, 12vw, 58px); line-height: .98; }
+      .hero-lead { font-size: 17px; }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
-      .hero-photo-accent-two {
-        width: 120px;
-        height: 120px;
-        left: 6%;
+      .hero-actions .button { width: 100%; justify-content: center; }
+      .hero-meta { gap: 8px 14px; }
+      .section { padding-block: 72px; }
+      .two-column,
+      .section-heading-wide,
+      .contact-panel {
+        grid-template-columns: 1fr !important;
       }
+      .principles,
+      .card-grid,
+      .tool-groups { grid-template-columns: 1fr !important; }
+      .work-item {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+        padding-block: 26px;
+      }
+      .work-item h3 {
+        font-size: clamp(21px, 6.2vw, 27px);
+        line-height: 1.18;
+        overflow-wrap: anywhere;
+      }
+      .work-year { margin-bottom: 0; }
+      .work-item .text-link,
+      .work-item .status-pill { justify-self: start; }
+      .contact-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+      .contact-actions .button { width: 100%; justify-content: center; }
+      .footer-inner { align-items: flex-start; gap: 12px; }
+    }
+
+    @media (max-width: 390px) {
+      .container { width: min(100% - 24px, var(--container)); }
+      .hero { padding-top: 100px; }
+      .hero h1 { font-size: 38px; }
+      .hero-photo-card { width: min(100%, 250px); }
+      .main-nav { padding-inline: 20px; }
+      .work-item h3 { font-size: 21px; }
     }
   `;
   document.head.appendChild(style);
 }
 
-function applyCleanPortraitLayout() {
-  injectCleanPortraitStyles();
-
+function applyLatestLayout() {
+  injectLatestResponsiveStyles();
   const heroVisual = document.querySelector(".hero-visual");
   if (heroVisual) {
     heroVisual.className = "hero-visual hero-photo-visual reveal";
-    heroVisual.setAttribute(
-      "aria-label",
-      isChinesePage ? "陈明诗个人照片" : "Portrait of Mingshi Chen"
-    );
+    heroVisual.setAttribute("aria-label", isChinesePage ? "陈明诗个人照片" : "Portrait of Mingshi Chen");
     heroVisual.innerHTML = `
       <div class="hero-photo-accent hero-photo-accent-one" aria-hidden="true"></div>
       <div class="hero-photo-accent hero-photo-accent-two" aria-hidden="true"></div>
       <figure class="hero-photo-card">
         <div class="hero-photo-frame">
-          <img src="mingshi-chen-photo.jpg" alt="${isChinesePage ? "陈明诗个人照片" : "Portrait of Mingshi Chen"}">
+          <img src="mingshi-chen-photo.jpg?v=4" alt="${isChinesePage ? "陈明诗个人照片" : "Portrait of Mingshi Chen"}">
         </div>
         <figcaption class="hero-photo-caption">
           <p class="hero-photo-name">${isChinesePage ? "陈明诗" : "Mingshi Chen"}</p>
@@ -265,18 +278,15 @@ function applyCleanPortraitLayout() {
       </figure>
     `;
   }
-
-  document.querySelectorAll("#about .about-photo-card, #about .about-brain-card").forEach((element) => {
-    element.remove();
-  });
+  document.querySelectorAll("#about .about-photo-card, #about .about-brain-card").forEach((element) => element.remove());
 }
 
 function renamePublications() {
-  const exactTitles = [
+  const titles = [
     {
       doi: "10.1038/s41598-026-56688-y",
       en: "On the value of radiomics in addition to clinical measures in emotional conflict fMRI for predicting sertraline response in major depressive disorder",
-      zh: "情绪冲突 fMRI 中放射组学在临床指标基础上预测重度抑郁障碍舍曲林疗效的增益价值"
+      zh: "情绪冲突 fMRI 中放射组学在临床指标之外对重度抑郁障碍舍曲林治疗反应预测的附加价值"
     },
     {
       doi: "10.1016/j.nicl.2024.103707",
@@ -308,25 +318,14 @@ function renamePublications() {
   document.querySelectorAll(".work-item").forEach((item) => {
     const heading = item.querySelector("h3");
     if (!heading) return;
-
-    const linkText = Array.from(item.querySelectorAll("a[href]"))
-      .map((link) => link.href)
-      .join(" ");
-
-    const publication = exactTitles.find(({ doi }) => linkText.includes(doi));
-    if (publication) {
-      heading.textContent = isChinesePage ? publication.zh : publication.en;
+    const links = Array.from(item.querySelectorAll("a[href]"), (link) => link.href).join(" ");
+    const match = titles.find(({ doi }) => links.includes(doi));
+    if (match) {
+      heading.textContent = isChinesePage ? match.zh : match.en;
       return;
     }
-
-    const currentTitle = heading.textContent.toLowerCase();
-    if (
-      currentTitle.includes("brain age") ||
-      currentTitle.includes("biological brain age") ||
-      currentTitle.includes("脑龄") ||
-      currentTitle.includes("bilingual") ||
-      currentTitle.includes("双语")
-    ) {
+    const title = heading.textContent.toLowerCase();
+    if (title.includes("brain age") || title.includes("biological brain age") || title.includes("脑龄") || title.includes("bilingual") || title.includes("双语")) {
       heading.textContent = isChinesePage
         ? "语言加工需求可预测生物学脑龄：来自双语者、翻译者和口译者的 MRI 证据"
         : "Language processing demands predict biological brain age: MRI evidence from bilinguals, translators, and interpreters";
@@ -335,7 +334,7 @@ function renamePublications() {
 }
 
 updateSeoMetadata();
-applyCleanPortraitLayout();
+applyLatestLayout();
 renamePublications();
 replaceChineseName();
 
@@ -352,7 +351,6 @@ window.addEventListener("hashchange", updateLanguageSwitchHref);
 function updateHeader() {
   header?.classList.toggle("scrolled", window.scrollY > 18);
 }
-
 updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
@@ -364,30 +362,19 @@ function closeMobileNav() {
 
 navToggle?.addEventListener("click", () => {
   const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-  if (isOpen) {
-    closeMobileNav();
-  } else {
+  if (isOpen) closeMobileNav();
+  else {
     navToggle.setAttribute("aria-expanded", "true");
     mainNav?.classList.add("open");
     document.body.style.overflow = "hidden";
   }
 });
-
-mainNav?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", closeMobileNav);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeMobileNav();
-});
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 760) closeMobileNav();
-});
+mainNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileNav));
+document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMobileNav(); });
+window.addEventListener("resize", () => { if (window.innerWidth > 760) closeMobileNav(); });
 
 themeToggle?.addEventListener("click", () => {
-  const nextTheme =
-    document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   document.documentElement.dataset.theme = nextTheme;
   localStorage.setItem("theme", nextTheme);
 });
@@ -395,16 +382,13 @@ themeToggle?.addEventListener("click", () => {
 const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
 
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
