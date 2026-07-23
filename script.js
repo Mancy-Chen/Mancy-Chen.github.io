@@ -50,6 +50,7 @@ function updateSeoMetadata() {
     structuredData.id = "person-structured-data";
     document.head.appendChild(structuredData);
   }
+
   structuredData.textContent = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
@@ -109,15 +110,15 @@ function replaceChineseName() {
   });
 }
 
-function injectRefinedLayoutStyles() {
-  if (document.querySelector("#refined-portrait-brain-styles")) return;
+function injectCleanPortraitStyles() {
+  if (document.querySelector("#clean-portrait-styles")) return;
 
   const style = document.createElement("style");
-  style.id = "refined-portrait-brain-styles";
+  style.id = "clean-portrait-styles";
   style.textContent = `
     .hero-photo-visual {
       position: relative;
-      min-height: 610px;
+      min-height: 575px;
       display: grid;
       place-items: center;
       isolation: isolate;
@@ -131,29 +132,29 @@ function injectRefinedLayoutStyles() {
     }
 
     .hero-photo-accent-one {
-      width: 360px;
-      height: 360px;
-      right: 1%;
-      top: 7%;
-      background: color-mix(in srgb, var(--accent-soft) 78%, transparent);
+      width: 330px;
+      height: 330px;
+      right: 4%;
+      top: 8%;
+      background: color-mix(in srgb, var(--accent-soft) 68%, transparent);
     }
 
     .hero-photo-accent-two {
-      width: 190px;
-      height: 190px;
-      left: 3%;
-      bottom: 8%;
+      width: 160px;
+      height: 160px;
+      left: 7%;
+      bottom: 10%;
       border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--surface) 66%, transparent);
+      background: color-mix(in srgb, var(--surface) 55%, transparent);
     }
 
     .hero-photo-card {
-      width: min(100%, 410px);
+      width: min(100%, 365px);
       margin: 0;
-      padding: 16px;
-      background: color-mix(in srgb, var(--surface-solid) 90%, transparent);
+      padding: 14px;
+      background: color-mix(in srgb, var(--surface-solid) 92%, transparent);
       border: 1px solid var(--line);
-      border-radius: 34px;
+      border-radius: 30px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(14px);
     }
@@ -161,7 +162,7 @@ function injectRefinedLayoutStyles() {
     .hero-photo-frame {
       overflow: hidden;
       aspect-ratio: 4 / 5;
-      border-radius: 25px;
+      border-radius: 22px;
       background: var(--bg-soft);
     }
 
@@ -173,13 +174,13 @@ function injectRefinedLayoutStyles() {
     }
 
     .hero-photo-caption {
-      padding: 18px 5px 4px;
+      padding: 16px 4px 3px;
     }
 
     .hero-photo-name {
       margin: 0;
       font-family: var(--serif);
-      font-size: clamp(29px, 3vw, 38px);
+      font-size: clamp(27px, 2.8vw, 35px);
       font-weight: 600;
       line-height: 1.05;
       letter-spacing: -.035em;
@@ -188,81 +189,29 @@ function injectRefinedLayoutStyles() {
     .hero-photo-subname {
       margin: 6px 0 7px;
       color: var(--accent);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
     }
 
     .hero-photo-role {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .about-brain-card {
-      width: min(100%, 340px);
-      margin-top: 34px;
-      padding: 28px;
-      color: var(--accent);
-      background: color-mix(in srgb, var(--surface-solid) 82%, transparent);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .about-brain-icon {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-    }
-
-    .about-brain-icon .brain-disc {
-      fill: var(--accent-soft);
-      stroke: var(--line);
-      stroke-width: 1.2;
-    }
-
-    .about-brain-icon .brain-line,
-    .about-brain-icon .brain-detail {
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .about-brain-icon .brain-line { stroke-width: 7; }
-    .about-brain-icon .brain-detail { stroke-width: 5; opacity: .78; }
-
-    .about-brain-caption {
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-    }
-
-    .about-brain-caption span {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--accent-2);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .about-brain-caption strong {
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 23px;
-      font-weight: 600;
+    #about .about-photo-card,
+    #about .about-brain-card {
+      display: none !important;
     }
 
     html[lang="zh-CN"] .hero-photo-name,
-    html[lang="zh-CN"] .hero-photo-subname,
-    html[lang="zh-CN"] .about-brain-caption span {
+    html[lang="zh-CN"] .hero-photo-subname {
       letter-spacing: 0;
     }
 
     @media (max-width: 980px) {
-      .hero-photo-visual { min-height: 560px; }
-      .hero-photo-card { width: min(100%, 380px); }
-      .about-brain-card { max-width: 360px; }
+      .hero-photo-visual { min-height: 525px; }
+      .hero-photo-card { width: min(100%, 350px); }
     }
 
     @media (max-width: 760px) {
@@ -271,32 +220,28 @@ function injectRefinedLayoutStyles() {
         padding: 20px 0 8px;
       }
       .hero-photo-card {
-        width: min(100%, 330px);
-        padding: 13px;
-        border-radius: 28px;
+        width: min(100%, 310px);
+        padding: 12px;
+        border-radius: 25px;
       }
-      .hero-photo-frame { border-radius: 21px; }
+      .hero-photo-frame { border-radius: 19px; }
       .hero-photo-accent-one {
-        width: 280px;
-        height: 280px;
-        right: 3%;
+        width: 250px;
+        height: 250px;
+        right: 5%;
       }
       .hero-photo-accent-two {
-        width: 140px;
-        height: 140px;
-        left: 4%;
-      }
-      .about-brain-card {
-        max-width: 300px;
-        margin-top: 24px;
+        width: 120px;
+        height: 120px;
+        left: 6%;
       }
     }
   `;
   document.head.appendChild(style);
 }
 
-function applyPortraitAndBrainLayout() {
-  injectRefinedLayoutStyles();
+function applyCleanPortraitLayout() {
+  injectCleanPortraitStyles();
 
   const heroVisual = document.querySelector(".hero-visual");
   if (heroVisual) {
@@ -321,38 +266,69 @@ function applyPortraitAndBrainLayout() {
     `;
   }
 
-  const aboutHeading = document.querySelector("#about .section-heading");
-  if (aboutHeading) {
-    aboutHeading.querySelector(".about-photo-card, .about-brain-card")?.remove();
+  document.querySelectorAll("#about .about-photo-card, #about .about-brain-card").forEach((element) => {
+    element.remove();
+  });
+}
 
-    const brainCard = document.createElement("div");
-    brainCard.className = "about-brain-card reveal";
-    brainCard.setAttribute(
-      "aria-label",
-      isChinesePage
-        ? "医学影像与人工智能脑图标"
-        : "Minimal brain icon representing clinical imaging and AI"
-    );
-    brainCard.innerHTML = `
-      <svg class="about-brain-icon" viewBox="0 0 320 320" aria-hidden="true">
-        <circle class="brain-disc" cx="160" cy="160" r="132"></circle>
-        <path class="brain-line" d="M154 76c-21-23-62-15-69 17-27 4-39 36-23 57-19 19-9 51 16 57-3 28 25 48 48 34 10 20 34 26 50 12V97c-2-10-9-17-22-21Z"></path>
-        <path class="brain-line" d="M166 76c21-23 62-15 69 17 27 4 39 36 23 57 19 19 9 51-16 57 3 28-25 48-48 34-10 20-34 26-50 12V97c2-10 9-17 22-21Z"></path>
-        <path class="brain-detail" d="M111 104c20 1 32 14 33 33M88 148c21-7 42 2 47 21M91 201c20-14 43-11 57 4M123 239c-3-20 6-35 23-44"></path>
-        <path class="brain-detail" d="M209 104c-20 1-32 14-33 33M232 148c-21-7-42 2-47 21M229 201c-20-14-43-11-57 4M197 239c3-20-6-35-23-44"></path>
-      </svg>
-      <div class="about-brain-caption">
-        <span>${isChinesePage ? "临床视角" : "Clinical perspective"}</span>
-        <strong>${isChinesePage ? "影像 · 数据 · 人工智能" : "Imaging · Data · AI"}</strong>
-      </div>
-    `;
-    aboutHeading.appendChild(brainCard);
-  }
+function renamePublications() {
+  const exactTitles = [
+    {
+      doi: "10.1038/s41598-026-56688-y",
+      title: "On the value of radiomics in addition to clinical measures in emotional conflict fMRI for predicting sertraline response in major depressive disorder"
+    },
+    {
+      doi: "10.1016/j.nicl.2024.103707",
+      title: "Prediction of methylphenidate treatment response for ADHD using conventional and radiomics T1 and DTI features: Secondary analysis of a randomized clinical trial"
+    },
+    {
+      doi: "10.1016/B978-0-443-14109-6.00014-6",
+      title: "What is beyond the image? Machine learning for MR image analysis"
+    },
+    {
+      doi: "10.1186/s40644-024-00798-1",
+      title: "Assessing the intracranial metabolic score as a novel prognostic tool in primary CNS lymphoma with end of induction-chemotherapy 18F-FDG PET/CT and PET/MR"
+    },
+    {
+      doi: "10.3390/cancers16152708",
+      title: "The Prognostic Significance of Pontine-White Matter Score in Primary Central Nervous System Lymphoma Patients"
+    },
+    {
+      doi: "10.1016/j.radonc.2023.109579",
+      title: "Endonasopharyngeal ultrasound and magnetic resonance imaging features of recurrent retropharyngeal nodes in nasopharyngeal carcinoma patients: a radiologic-histopathologic study"
+    }
+  ];
+
+  document.querySelectorAll(".work-item").forEach((item) => {
+    const heading = item.querySelector("h3");
+    if (!heading) return;
+
+    const linkText = Array.from(item.querySelectorAll("a[href]"))
+      .map((link) => link.href)
+      .join(" ");
+
+    const publication = exactTitles.find(({ doi }) => linkText.includes(doi));
+    if (publication) {
+      heading.textContent = publication.title;
+      return;
+    }
+
+    const currentTitle = heading.textContent.toLowerCase();
+    if (
+      currentTitle.includes("brain age") ||
+      currentTitle.includes("biological brain age") ||
+      currentTitle.includes("脑龄") ||
+      currentTitle.includes("bilingual") ||
+      currentTitle.includes("双语")
+    ) {
+      heading.textContent = "Language processing demands predict biological brain age: MRI evidence from bilinguals, translators, and interpreters";
+    }
+  });
 }
 
 updateSeoMetadata();
-replaceChineseName();
-applyPortraitAndBrainLayout();
+applyCleanPortraitLayout();
+renamePublications();
 replaceChineseName();
 
 function updateLanguageSwitchHref() {
@@ -366,7 +342,7 @@ updateLanguageSwitchHref();
 window.addEventListener("hashchange", updateLanguageSwitchHref);
 
 function updateHeader() {
-  header.classList.toggle("scrolled", window.scrollY > 18);
+  header?.classList.toggle("scrolled", window.scrollY > 18);
 }
 
 updateHeader();
@@ -384,7 +360,7 @@ navToggle?.addEventListener("click", () => {
     closeMobileNav();
   } else {
     navToggle.setAttribute("aria-expanded", "true");
-    mainNav.classList.add("open");
+    mainNav?.classList.add("open");
     document.body.style.overflow = "hidden";
   }
 });
